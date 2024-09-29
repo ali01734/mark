@@ -16,7 +16,7 @@ type pageProps = {
 
 // Server-side function to fetch review images
 const fetchReviewImages = async (): Promise<string[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/V1/review-image/1`, {
+  const res = await fetch(`https://markdrawing.com/api/V1/review-image/1`, {
     next: { revalidate: 10 }, // Revalidate every 10 seconds
   });
 
