@@ -49,4 +49,3 @@ next-env.d.ts
 /server/Homestead.yaml
 /server/npm-debug.log
 /server/yarn-error.log
-_next
