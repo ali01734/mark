@@ -26,7 +26,6 @@ const fetchReviewImages = async (): Promise<string[]> => {
 
   const data = await res.json();
 
-  console.log("ali"+data)
   // Access the nested reviewImages from the response
   return data.data.reviewImages || [];
 };
