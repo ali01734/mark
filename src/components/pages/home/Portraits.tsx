@@ -1,5 +1,5 @@
 import React from "react";
-import image from "@/assets/home/portraits/orginalone.png";
+import image from "@/assets/home/portraits/orginalone.webp";
 import Image from "next/image";
 
 type PortraitsProps = {};
@@ -32,7 +32,7 @@ const Portraits: React.FC<PortraitsProps> = () => {
           </div>
         </div>
         <div className="lg:max-w-[33.33%]">
-          <Image src={image} alt="Portraits" width={300} height={300}  layout="intrinsic"  priority={true}/>
+          <Image src={image} alt="Portraits" />
         </div>
       </div>
     </section>

@@ -75,28 +75,28 @@ const Sliders: React.FC = () => {
   }
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto">
-        <Slider {...settings}>
-          {sliders.map((video: Video, index: number) => (
-            <div key={index} className="p-3 shadow-lg m-10 rounded-lg">
-              {/* Embedded YouTube video */}
-              <iframe
-                src={`https://www.youtube.com/embed/${video.url}`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                className="w-full h-48 md:h-72 rounded-lg"
-                allowFullScreen
-              ></iframe>
-              {/* Video title */}
-              <h3 className="mt-2 text-center text-lg font-semibold pb-4">
-                {video.title}
-              </h3>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </section>
+      <section className="py-20">
+        <div className="container mx-auto">
+          <Slider {...settings}>
+            {sliders.map((video: Video, index: number) => (
+                <div key={index} className="p-3 shadow-lg m-2 rounded-lg"> {/* Adjusted margin for responsiveness */}
+                  {/* Embedded YouTube video */}
+                  <iframe
+                      src={`https://www.youtube.com/embed/${video.url}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      className="w-full h-48 md:h-72 rounded-lg"
+                      allowFullScreen
+                  ></iframe>
+                  {/* Video title */}
+                  <h3 className="mt-2 text-center text-lg font-semibold pb-4">
+                    {video.title}
+                  </h3>
+                </div>
+            ))}
+          </Slider>
+        </div>
+      </section>
   );
 };
 
