@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import dynamic from 'next/dynamic';
 import NonCriticalStyles from '@/components/shared/ui/NonCriticalStyles';
 import '@/app/globals.css'; // Import the globals.css file
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // Optimize font loading
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +41,7 @@ export default function RootLayout({
         <DynamicCurrencyBlocker>
           <DynamicChat>{children}</DynamicChat>
         </DynamicCurrencyBlocker>
+        <SpeedInsights />
       </body>
     </html>
   );
