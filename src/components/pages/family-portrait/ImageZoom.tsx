@@ -36,52 +36,69 @@ const ImageZoom: React.FC<ImageZoomProps> = ({ images }) => {
   const handleMouseLeave = () => setZoom(false);
 
   return (
-    <div className="relative">
-      <div
-        className="relative"
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Image
-          src={img} // Use the state here to display the selected image
-          ref={source}
-          className="w-full h-auto bg-gray-100 cursor-crosshair object-cover"
-          alt="Zoomable image"
-          width={800} // Add appropriate width
-          height={600} // Add appropriate height
-        />
+      <div className="relative">
+        <div
+            className="relative"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
 
-        {zoom && (
-          <div
-            className="absolute lg:top-0 top-[101%] -left-4 lg:left-full ml-4 w-full h-full pointer-events-none overflow-hidden shadow-2xl"
-            ref={target}
-          >
-            <Image
-              src={img} // Use the state here as well for the zoomed preview
-              className="w-full h-full"
-              alt="Zoomed image"
-              width={1600} // Add appropriate width
-              height={1200} // Add appropriate height
-            />
-          </div>
-        )}
+          <Image
+              src={img} // Use the state here to display the selected image
+              ref={source}
+              className="w-full h-auto bg-gray-100 cursor-crosshair object-cover"
+              alt="Zoomable image"
+              width={400}
+              height={300}
+              layout="responsive"
+              sizes="(max-width: 480px) 100vw, (max-width: 768px) 75vw, (min-width: 769px) 50vw"
+              quality={40}
+              loading="eager"
+              priority={true}
+              placeholder="blur"
+          />
+
+          {zoom && (
+              <div
+                  className="absolute lg:top-0 top-[101%] -left-4 lg:left-full ml-4 w-full h-full pointer-events-none overflow-hidden shadow-2xl"
+                  ref={target}
+              >
+                <Image
+                    src={img} // Use the state here as well for the zoomed preview
+                    className="w-full h-full"
+                    alt="Zoomed image"
+                    width={1400} // Add appropriate width
+                    height={1000} // Add appropriate height
+                    layout="responsive"
+                    sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw, 500px"
+                    quality={50} // Lower value to save more bandwidth
+                    loading="lazy" // Lazy load for zoomed image
+                    priority={false} // Non-critical zoomed image
+                />
+              </div>
+          )}
+        </div>
+        <div className="grid grid-cols-4 gap-5 rounded mt-5">
+          {images.map((image, index) => (
+              <div key={index}>
+                <Image
+                    src={image}
+                    className="w-20 h-20 p-2 cursor-pointer border border-gray-300"
+                    alt="Thumbnail image"
+                    width={100}
+                    height={75}
+                    layout="responsive"
+                    sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw, 500px"
+                    quality={50}
+                    loading="lazy" // Lazy load for non-critical thumbnails
+                    priority={false} // Non-critical thumbnails
+                    onClick={() => setImg(image)} // Update the main image on click
+                />
+              </div>
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 rounded mt-5">
-        {images.map((image, index) => (
-          <div key={index}>
-            <Image
-              src={image}
-              className="w-20 h-20 p-2 cursor-pointer border border-gray-300"
-              alt="Thumbnail image"
-              width={100} // Add appropriate width
-              height={75} // Add appropriate height
-              onClick={() => setImg(image)} // Update the main image on click
-            />
-          </div>
-        ))}
-      </div>
-    </div>
   );
 };
 

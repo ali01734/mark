@@ -30,6 +30,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdnjs.cloudflare.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.markdrawingau.com',
+      },
     ],
   },
 };

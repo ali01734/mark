@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 const PaymentNotification = () => {
   const [showNotification, setShowNotification] = useState(false);
   const searchParams = useSearchParams();
-  const orderId = searchParams.get('p');
+  const orderId = searchParams?.get('p') || '';
 
   useEffect(() => {
     if (orderId) {

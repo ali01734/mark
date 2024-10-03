@@ -1,0 +1,14 @@
+/* Add any non-critical styles here */
+/* For example, styles for components that are not immediately visible on page load */
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+.animated-element {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Add more non-critical styles as needed */

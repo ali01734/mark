@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles */
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   color: #212529;
 }
 
@@ -17,50 +17,31 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.making__hover {
-  box-shadow: 0 0 15px #00000090;
+img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
 }
 
-.slick-slider .slick-slide {
-  padding: 0 15px;
-}
-.slick-prev {
-  left: -3% !important;
-  z-index: 1;
-}
-.slick-next {
-  right: -3% !important;
-  z-index: 1;
+.image-placeholder {
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
 }
 
-.slick-prev:before,
-.slick-next:before {
-  color: #000000 !important;
+.image-placeholder::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -150px;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(to right, transparent 0%, #e8e8e8 50%, transparent 100%);
+  animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
-.scroll::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-.scroll::-webkit-scrollbar {
-  width: 6px;
-  background-color: #b9b9b9;
-  border-radius: 10px;
-}
-
-.scroll::-webkit-scrollbar-thumb {
-  background-color: #808080;
-  border-radius: 10px;
-}
-
-.card {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-
-.slick-slider .slick-slide {
-  padding: 0 10px;
-}
-
-.shadow__slider {
-  box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.1);
+@keyframes load {
+  from { left: -150px; }
+  to { left: 100%; }
 }

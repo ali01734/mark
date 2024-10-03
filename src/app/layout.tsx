@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Chat from "@/components/shared/ui/chat/Chat";
-import CurrencyBlocker from "@/components/shared/ui/CurrencyBlocker";
+import { Inter } from "next/font/google";
+import dynamic from 'next/dynamic';
+import NonCriticalStyles from '@/components/shared/ui/NonCriticalStyles';
+import '@/app/globals.css'; // Import the globals.css file
 
-
-const inter = Inter({ subsets: ["latin"] });
-
-const poppins = Poppins({
+// Optimize font loading
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  display: "swap", // Add display swap for better font loading
+  display: "swap",
+  variable: "--font-inter",
+});
+
+// Dynamically import components to reduce initial load time
+const DynamicChat = dynamic(() => import("@/components/shared/ui/chat/Chat"), {
+  loading: () => <p>Loading chat...</p>,
+  ssr: false,
+});
+
+const DynamicCurrencyBlocker = dynamic(() => import("@/components/shared/ui/CurrencyBlocker"), {
+  loading: () => <p>Loading currency blocker...</p>,
+  ssr: false,
 });
 
 export const metadata: Metadata = {
   title: "Mark Drawing",
-  description: "Mark Drawing",
+  description: "Mark Drawing - Professional Portrait Services",
 };
 
 export default function RootLayout({
@@ -27,12 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-
-      <body className={inter.className}>
-        <CurrencyBlocker>
-            <Chat>{children}</Chat> {/* Chat will only render when currency is loaded */}
-        </CurrencyBlocker>
+    <html lang="en" className={inter.variable}>
+      <head>
+        <NonCriticalStyles />
+      </head>
+      <body>
+        <DynamicCurrencyBlocker>
+          <DynamicChat>{children}</DynamicChat>
+        </DynamicCurrencyBlocker>
       </body>
     </html>
   );

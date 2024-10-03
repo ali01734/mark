@@ -6,7 +6,7 @@ import Banner from "@/components/pages/home/Banner";
 
 // TODO: Create or import the actual SuccessNotification component
 const SuccessNotification = () => <div>
-  {/* <SuccessNotification /> */}
+  {/* Success Notification Placeholder */}
   </div>;
 
 const Featured = dynamic(() => import("@/components/pages/home/Featured"), {

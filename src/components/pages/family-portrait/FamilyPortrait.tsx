@@ -115,7 +115,7 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({
   });
 
   const searchParams = useSearchParams();
-  const qValue = searchParams.get('q');
+  const qValue = searchParams?.get('q') || 0;
 
 
 
@@ -354,7 +354,7 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({
           </div>
           <div>
             <div>
-              <h2 className="font-medium text-3xl">{product.title}</h2>
+              <h2 className="font-medium text-xl md:text-3xl ">{product.title}</h2>
               <span className="text-blue-600 text-[15px] ">Review (0)</span>
             </div>
             <div className="pt-10">
